@@ -1,0 +1,92 @@
+SP.HTML
+[done]
+- log in (PROCESS_LOGIN.PHP) both user & admin
+- sign up (PROCESS_SIGNUP.PHP)
+
+* CUSTOMER
+HOMEPAGE.PHP
+[wip]
+- playlist tab content
+- addRecomPageInteractions() (functions for Home tab)
+- addProfilePageInteractions() (functions for Profile tab)
+- addPlaylistPageInteractions() (functions for Playlist tab)
+- customer profile picture
+[done]
+- base interface
+
+HOME.PHP
+[wip]
+- buttons
+- song pictures
+- connect to database
+[done]
+- base interface
+
+SONGPAGE.PHP
+[wip]
+- filter button
+- connect to database
+[done]
+- search bar
+- song list (SONGDATA.PHP)
+- song playing
+- buttons
+
+PROFILE.PHP
+[wip]
+- change profile picture
+- connect to database
+- subscribed text
+- username display
+[done]
+- base interface
+- buttons
+
+NOTSUB.PHP
+[wip]
+- connect to database
+[done]
+- base interface
+
+SUB.PHP
+[wip]
+- all buttons (except for new playlist)
+- all functions
+- connect to database
+[done]
+- base interface
+
+* ADMIN
+ADMINPAGE.PHP
+- tab content interface problem
+- addManageSongPageInteractions() (functions for Manage Song tab)
+- addAdminProfilePageInteractions() (functions for Profile tab)
+
+MANAGESONGPAGE.PHP
+[done]
+- interface
+- connected to database
+- buttons
+- album covers
+
+MANAGEDETAILSONG.PHP
+[wip]
+- edit songs (can't edit duration & mp3 file)
+- add songs (can't add duration) (ADDSONG.PHP)
+- delete songs (delete album and songs matching with the song title) (DELETESONG.PHP)
+[done]
+- connected to database
+- interface
+- buttons (except change album picture button)
+
+ADMINPROFILEPAGE.PHP
+[wip]
+- connect to database
+- display username
+- delete the subscribe text
+- can't change profile picture between accounts (UPLOAD_PROFILE_PIC.PHP)
+[done]
+- buttons
+- base interface
+
+btw make sure you have a folder named "uploads" in the same directory (it's for admin pfp upload)

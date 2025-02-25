@@ -1,0 +1,96 @@
+<script>
+        function openNewPlaylistPopup() {
+            document.getElementById('new-playlist-popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeNewPlaylistPopup() {
+            document.getElementById('new-playlist-popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function addNewPlaylist() {
+            const playlistName = document.getElementById('playlist-name').value;
+            if (playlistName) {
+                const newPlaylistItem = document.createElement('div');
+                newPlaylistItem.className = 'playlist-item';
+                newPlaylistItem.textContent = playlistName;
+                document.querySelector('.left-section').appendChild(newPlaylistItem);
+                closeNewPlaylistPopup();
+            }
+        }
+
+        function showSongList(playlistId) {
+            // AJAX request to fetch data from PHP
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        const playlists = JSON.parse(xhr.responseText);
+
+                        // Find the playlist based on playlistId
+                        const playlistData = playlists.find(pl => pl.playlistId === playlistId);
+
+                        // Hide all song lists
+                        const songLists = document.querySelectorAll('.song-list');
+                        songLists.forEach(list => list.classList.remove('active'));
+
+                        // Show the selected song list
+                        const selectedSongList = document.getElementById(`song-list-${playlistId}`);
+                        selectedSongList.innerHTML = ''; // Clear existing items
+
+                        // Populate the song list with fetched data
+                        playlistData.songs.forEach(song => {
+                            const songItem = document.createElement('div');
+                            songItem.className = 'song-item';
+                            songItem.draggable = true;
+                            songItem.innerHTML = `
+                                <span class="move-icon">☰</span>
+                                <span class="song-name">${song.song_title}</span>
+                                <span class="delete-icon" onclick="deleteSong(this)">×</span>
+                            `;
+                            selectedSongList.appendChild(songItem);
+                        });
+
+                        // Show the selected song list
+                        if (selectedSongList) {
+                            selectedSongList.classList.add('active');
+                        }
+                    } else {
+                        console.error('Error fetching data:', xhr.statusText);
+                    }
+                }
+            };
+
+            xhr.open('GET', 'listdata.php');
+            xhr.send();
+        }
+
+        // Drag and drop functions
+        let draggedItem = null;
+
+        function drag(event) {
+            draggedItem = event.target;
+        }
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drop(event, playlistId) {
+            event.preventDefault();
+            const target = event.target;
+            if (target.className === 'song-item') {
+                target.parentNode.insertBefore(draggedItem, target.nextSibling);
+                // Optionally, update the order of songs in the playlist in your data model or database
+                // Example: You can retrieve the updated order of songs in playlistId and save it.
+            }
+        }
+
+        // Delete song function
+        function deleteSong(deleteIcon) {
+            const songItem = deleteIcon.parentNode;
+            songItem.remove();
+            // Optionally, update the order of songs in the playlist in your data model or database
+        }
+    </script>

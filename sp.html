@@ -1,0 +1,90 @@
+<?php
+session_start();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Streaming Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000000; /* Black background */
+        }
+        .container {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 48px; /* Adjust the size as needed */
+            color: #cd5f00; /* text colour */
+            text-align: center; /* Center the heading */
+        }
+        img {
+            display: block; /* Ensure image is centered */
+            margin: 0 auto 20px; /* Center the image and add some space below */
+            width: 200px; /* Adjust the width as needed */
+        }
+        input[type="text"], input[type="password"] {
+            display: block;
+            width: 50%;
+            padding: 10px;
+            margin: 10px auto;
+            border: 5px solid #cd5f00;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 20px;
+            box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+        }
+        button {
+            padding: 10px 50px 10px;
+            margin: 20px;
+            border: 2px solid gray;
+            border-radius: 10px; /* Round corners */
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold; /* Bold text */
+            background-color: #5d3105;
+            text-align: center;
+        }
+        .login-btn {
+            background-color: #5d3105; 
+            color: #b9a999; /* White text color */ 
+        }
+        .signup-btn {
+            background-color: #5d3105; 
+            color: #b9a999; /* White text color */
+        }
+    </style>
+    <script>
+        function setFormAction(action) {
+            document.getElementById("main-form").action = action;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <img src="SSS.png" alt="Profile Picture">
+        <h1><b>Song Streaming Website</b></h1>
+        <form id="main-form" method="POST">
+            <input type="text" placeholder="Username" name="username" required>
+            <input type="password" placeholder="Password" name="password" required>
+            <button type="submit" class="login-btn" onclick="setFormAction('process_login.php')">Login</button>
+            <button type="submit" class="signup-btn" onclick="setFormAction('process_signup.php')">Sign Up</button>
+        </form>
+       <script>
+function myFunction() {
+  alert("Hello! I am an alert box!");
+}
+</script>
+    </div>
+</body>
+</html>
